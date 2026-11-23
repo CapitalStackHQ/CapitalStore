@@ -37,11 +37,10 @@
 
     <!-- =====================================================================
          VIEW 1: HOME PAGE VIEW (#homeView)
-         Clean header, full-width tall product showcase, €21.99 price, and CTA
          ===================================================================== -->
     <div id="homeView" class="bg-[#1A1A1A] w-full min-h-[84vh] flex flex-col">
 
-        <!-- Minimalist Top Header: Brand name on the left, clean right side -->
+        <!-- Top Header: Brand name on the left, "Get free ebook" link on the right -->
         <header class="w-full max-w-[760px] mx-auto px-4 sm:px-8 pt-8 sm:pt-12 pb-6 flex items-center justify-between">
             <a
                 href="#home"
@@ -49,6 +48,15 @@
                 class="inline-block text-2xl sm:text-[26px] font-bold tracking-tight text-[#F5F2EB] hover:text-[#C6A463] transition-colors"
             >
                 CapitalStack
+            </a>
+
+            <!-- NEW: Get free ebook link (scrolls to the email form) -->
+            <a
+                href="#ebookForm"
+                onclick="scrollToEbook(event)"
+                class="text-sm sm:text-[15px] font-medium text-[#C6A463] hover:text-[#F5F2EB] transition-colors"
+            >
+                Get free ebook
             </a>
         </header>
 
@@ -119,7 +127,6 @@
 
     <!-- =====================================================================
          VIEW 2: PRODUCT DETAIL PAGE VIEW (#productView)
-         Extended vertical length, top-left Back button, deliverables, Buy now
          ===================================================================== -->
     <div id="productView" class="hidden bg-[#1A1A1A] w-full min-h-[120vh] flex-col">
 
@@ -441,6 +448,18 @@
         const checkoutModal = document.getElementById('checkoutModal');
         const cookieModal = document.getElementById('cookieModal');
         const initialCheckoutHTML = document.getElementById('checkoutBody').innerHTML;
+
+        /**
+         * NEW: Smoothly scroll to the free ebook email form and focus the input.
+         */
+        function scrollToEbook(event) {
+            if (event) event.preventDefault();
+            const form = document.getElementById('ebookForm');
+            const input = document.getElementById('emailInput');
+            if (!form) return;
+            form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => { if (input) input.focus({ preventScroll: true }); }, 600);
+        }
 
         /**
          * Switch to the Product Detail Page (#productView) and scroll smoothly to top.
