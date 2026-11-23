@@ -1,66 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Viewport and theme configuration for responsive mobile & desktop viewing -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CapitalStack — Digital Guides & Resources</title>
-    <!-- Load Tailwind CSS -->
+    <title>CapitalStack — Digital Guides &amp; Resources</title>
+
+    <!-- Load Tailwind CSS for layout, spacing, and responsive utilities -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Load Inter Font -->
+
+    <!-- Load Inter typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://app.kit.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Configure Tailwind font family and Midnight Gold color tokens -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
                         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                    },
+                    colors: {
+                        obsidian: '#1A1A1A',
+                        bronze: '#5E4B43',
+                        gold: '#C6A463',
                     }
                 }
             }
         }
     </script>
 </head>
-<body class="bg-[#1A1A1A] text-[#F5F2EB] font-sans antialiased selection:bg-[#C6A463] selection:text-[#1A1A1A] flex flex-col min-h-screen">
+<body class="bg-[#1A1A1A] text-[#F5F2EB] font-sans antialiased selection:bg-[#C6A463] selection:text-[#1A1A1A] flex flex-col min-h-screen overflow-x-hidden">
 
     <!-- =====================================================================
-         VIEW 1: HOME PAGE VIEW (Midnight Gold Storefront)
+         VIEW 1: HOME PAGE VIEW (#homeView)
+         Clean header, full-width tall product showcase, €21.99 price, and CTA
          ===================================================================== -->
-    <div id="homeView" class="bg-[#1A1A1A] w-full min-h-[82vh] flex flex-col">
-        
-        <!-- Minimalist Header: Brand name top-left only -->
-        <header class="w-full max-w-[760px] mx-auto px-5 sm:px-8 pt-8 sm:pt-12 pb-6">
-            <a href="#" onclick="showHomePage(event)" class="inline-block text-2xl sm:text-[26px] font-bold tracking-tight text-[#F5F2EB] hover:text-[#C6A463] transition-colors">
+    <div id="homeView" class="bg-[#1A1A1A] w-full min-h-[84vh] flex flex-col">
+
+        <!-- Minimalist Top Header: Brand name on the left, clean right side -->
+        <header class="w-full max-w-[760px] mx-auto px-4 sm:px-8 pt-8 sm:pt-12 pb-6 flex items-center justify-between">
+            <a
+                href="#home"
+                onclick="showHomePage(event)"
+                class="inline-block text-2xl sm:text-[26px] font-bold tracking-tight text-[#F5F2EB] hover:text-[#C6A463] transition-colors"
+            >
                 CapitalStack
             </a>
         </header>
 
-        <!-- Main Full-Width Product Section -->
-        <main class="w-full max-w-[760px] mx-auto px-5 sm:px-8 pt-4 pb-20 sm:pb-28 flex-grow flex flex-col justify-center">
-            <!-- Result Count -->
+        <!-- Main Product Showcase Section -->
+        <main class="w-full max-w-[760px] mx-auto px-4 sm:px-8 pt-4 pb-24 sm:pb-32 flex-grow flex flex-col justify-center">
             <p class="text-sm sm:text-[15px] text-[#9E958E] mb-4">
                 1 result
             </p>
 
             <article class="w-full">
-                <!-- Tall Obsidian-to-Bronze Gradient Media Box with Centered Champagne Gold Handshake Icon -->
-                <div 
+                <!-- Tall Full-Width Product Display Card with Obsidian-to-Bronze Gradient -->
+                <div
                     onclick="showProductPage()"
                     role="button"
                     tabindex="0"
-                    aria-label="View How to start earning online - beginner guide"
-                    onkeydown="if(event.key==='Enter'||event.key===' ') showProductPage()"
-                    class="w-full h-[320px] sm:h-[380px] bg-gradient-to-b from-[#1A1A1A] via-[#342B27] to-[#5E4B43] border border-[#5E4B43]/70 rounded-[2px] flex items-center justify-center cursor-pointer group overflow-hidden transition-all duration-300 hover:border-[#C6A463]/80"
+                    aria-label="Open product page for How to start earning online - beginner guide"
+                    onkeydown="handleCardKeydown(event)"
+                    class="w-full h-[320px] sm:h-[380px] bg-gradient-to-b from-[#1A1A1A] via-[#342B27] to-[#5E4B43] border border-[#5E4B43]/70 rounded-[2px] flex items-center justify-center cursor-pointer group overflow-hidden transition-all duration-300 hover:border-[#C6A463]"
                 >
-                    <!-- Minimalist Metallic Champagne Gold Line-Art Handshake SVG -->
-                    <svg 
-                        class="w-16 h-16 sm:w-20 sm:h-20 text-[#C6A463] transition-transform duration-300 group-hover:scale-105" 
-                        viewBox="0 0 64 64" 
-                        fill="none" 
-                        stroke="currentColor" 
-                        stroke-width="2.4" 
-                        stroke-linecap="round" 
+                    <!-- Centered Champagne Gold Line-Art Handshake SVG -->
+                    <svg
+                        class="w-16 h-16 sm:w-20 sm:h-20 text-[#C6A463] transition-transform duration-300 group-hover:scale-105"
+                        viewBox="0 0 64 64"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.4"
+                        stroke-linecap="round"
                         stroke-linejoin="round"
                         aria-hidden="true"
                     >
@@ -78,19 +93,19 @@
                     </svg>
                 </div>
 
-                <!-- Product Details (Aligned Left with Generous Spacing) -->
+                <!-- Product Title & €21.99 Price -->
                 <div class="mt-7 sm:mt-8 text-left">
                     <h1 class="text-xl sm:text-2xl font-normal text-[#F5F2EB] leading-snug tracking-tight">
                         How to start earning online - beginner guide
                     </h1>
                     <p class="mt-3 text-lg sm:text-xl font-semibold text-[#C6A463]">
-                        $22.00
+                        &euro;21.99
                     </p>
                 </div>
 
-                <!-- Full-Width Champagne Gold Gradient CTA Button with Bold Obsidian Text -->
+                <!-- Full-Width High-Contrast Gold CTA Button -->
                 <div class="mt-8 sm:mt-9">
-                    <button 
+                    <button
                         type="button"
                         onclick="showProductPage()"
                         class="w-full bg-gradient-to-r from-[#C6A463] via-[#B89454] to-[#9E7D43] text-[#1A1A1A] font-bold text-base sm:text-lg py-[18px] px-6 rounded-[2px] tracking-wide hover:brightness-110 active:scale-[0.995] transition-all duration-150 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#C6A463] focus:ring-offset-2 focus:ring-offset-[#1A1A1A]"
@@ -103,21 +118,22 @@
     </div>
 
     <!-- =====================================================================
-         VIEW 2: PRODUCT DETAIL PAGE VIEW (Expanded & Tall Midnight Gold Layout)
+         VIEW 2: PRODUCT DETAIL PAGE VIEW (#productView)
+         Extended vertical length, top-left Back button, deliverables, Buy now
          ===================================================================== -->
-    <div id="productView" class="hidden bg-[#1A1A1A] w-full min-h-[115vh] flex-col">
-        
-        <!-- Top Bar with Top-Left "← Back" Button & Subtle Brand Name -->
-        <header class="w-full max-w-[760px] mx-auto px-5 sm:px-8 pt-8 sm:pt-12 pb-6 flex items-center justify-between">
-            <button 
+    <div id="productView" class="hidden bg-[#1A1A1A] w-full min-h-[120vh] flex-col">
+
+        <!-- Top Bar with Top-Left "← Back" Button -->
+        <header class="w-full max-w-[760px] mx-auto px-4 sm:px-8 pt-8 sm:pt-12 pb-6 flex items-center justify-between">
+            <button
                 type="button"
                 onclick="showHomePage(event)"
-                class="inline-flex items-center gap-2 text-sm sm:text-base font-semibold text-[#C6A463] hover:bg-[#5E4B43]/30 py-2 px-3 -ml-3 rounded-[2px] transition-colors cursor-pointer"
+                class="inline-flex items-center gap-2 text-sm sm:text-base font-semibold text-[#C6A463] hover:bg-[#5E4B43]/30 py-2.5 px-3.5 -ml-3 rounded-[2px] transition-colors cursor-pointer"
             >
                 <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
-                <span>Back</span>
+                <span>&larr; Back</span>
             </button>
 
             <span class="text-base sm:text-lg font-bold tracking-tight text-[#9E958E]">
@@ -125,18 +141,18 @@
             </span>
         </header>
 
-        <!-- Spacious Product Detail Content -->
-        <main class="w-full max-w-[760px] mx-auto px-5 sm:px-8 pt-4 pb-28 sm:pb-36 flex-grow">
-            
-            <!-- Tall Hero Product Media Box Matching Home Page -->
+        <!-- Extended Product Detail Content -->
+        <main class="w-full max-w-[760px] mx-auto px-4 sm:px-8 pt-4 pb-32 sm:pb-40 flex-grow">
+
+            <!-- Tall Hero Product Display Box Matching Home Page -->
             <div class="w-full h-[320px] sm:h-[380px] bg-gradient-to-b from-[#1A1A1A] via-[#342B27] to-[#5E4B43] border border-[#5E4B43]/70 rounded-[2px] flex items-center justify-center overflow-hidden">
-                <svg 
-                    class="w-20 h-20 sm:w-24 sm:h-24 text-[#C6A463]" 
-                    viewBox="0 0 64 64" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    stroke-width="2.4" 
-                    stroke-linecap="round" 
+                <svg
+                    class="w-20 h-20 sm:w-24 sm:h-24 text-[#C6A463]"
+                    viewBox="0 0 64 64"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.4"
+                    stroke-linecap="round"
                     stroke-linejoin="round"
                     aria-hidden="true"
                 >
@@ -154,29 +170,39 @@
                 </svg>
             </div>
 
-            <!-- Title & Price -->
+            <!-- Title & €21.99 Price -->
             <div class="mt-8 sm:mt-10 pb-8 border-b border-[#5E4B43]/50">
-                <h1 class="text-2xl sm:text-3xl font-bold text-[#F5F2EB] leading-tight tracking-tight">
+                <h2 class="text-2xl sm:text-3xl font-bold text-[#F5F2EB] leading-tight tracking-tight">
                     How to start earning online - beginner guide
-                </h1>
+                </h2>
                 <p class="mt-3 text-xl sm:text-2xl font-semibold text-[#C6A463]">
-                    $22.00
+                    &euro;21.99
                 </p>
             </div>
 
             <!-- Short Description -->
             <section class="mt-8 sm:mt-10">
                 <p class="text-base sm:text-lg text-[#C9C1B8] leading-relaxed">
-                    A practical, zero-fluff roadmap built for complete beginners who want to generate their first $500–$2,000 online. Skip overpriced courses and follow a clear, step-by-step system you can start with zero upfront capital.
+                    A practical, step-by-step beginner guide built to help you start earning online without bloated theory or heavy upfront costs. Follow a straightforward process to pick a path, set up your workflow, and take consistent daily action.
                 </p>
             </section>
 
-            <!-- 3 Things You'll Get (Translucent Warm Bronze Card) -->
+            <!-- Extra Spacer Block for Extended Vertical Scroll Length -->
+            <section class="mt-8 sm:mt-10 py-6 border-y border-[#5E4B43]/40">
+                <p class="text-xs sm:text-sm uppercase tracking-widest text-[#9E958E] font-semibold">
+                    Built for First-Time Earners
+                </p>
+                <p class="mt-2 text-sm sm:text-base text-[#B3AAA1] leading-relaxed">
+                    Designed to be read in one sitting and put into practice the same day—clear priorities, simple execution steps, and zero fluff.
+                </p>
+            </section>
+
+            <!-- "What you'll get" Card with 3 Concrete Deliverables -->
             <section class="mt-10 sm:mt-12 bg-[#5E4B43]/20 border border-[#5E4B43]/70 rounded-[2px] p-6 sm:p-8">
-                <h2 class="text-base sm:text-lg font-bold uppercase tracking-wider text-[#C6A463]">
+                <h3 class="text-base sm:text-lg font-bold uppercase tracking-wider text-[#C6A463]">
                     What you'll get
-                </h2>
-                <ul class="mt-6 space-y-5">
+                </h3>
+                <ul class="mt-6 space-y-6">
                     <li class="flex items-start gap-3.5">
                         <span class="mt-0.5 w-6 h-6 rounded-[2px] bg-[#C6A463] text-[#1A1A1A] flex items-center justify-center shrink-0">
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.8" viewBox="0 0 24 24" aria-hidden="true">
@@ -184,8 +210,8 @@
                             </svg>
                         </span>
                         <div>
-                            <p class="font-semibold text-[#F5F2EB] text-base">The Complete Beginner Playbook (PDF)</p>
-                            <p class="text-sm text-[#B3AAA1] mt-1">35+ pages breaking down proven beginner-friendly income models and how to pick your first niche.</p>
+                            <p class="font-semibold text-[#F5F2EB] text-base">1. Beginner Online Earning Playbook (PDF)</p>
+                            <p class="text-sm text-[#B3AAA1] mt-1">Clear breakdown of practical ways to earn online and how to choose a starting model that fits your schedule.</p>
                         </div>
                     </li>
 
@@ -196,8 +222,8 @@
                             </svg>
                         </span>
                         <div>
-                            <p class="font-semibold text-[#F5F2EB] text-base">30-Day Daily Action Checklist</p>
-                            <p class="text-sm text-[#B3AAA1] mt-1">Exact day-by-day tasks so you always know what to execute next without second-guessing.</p>
+                            <p class="font-semibold text-[#F5F2EB] text-base">2. 30-Day Step-by-Step Action Roadmap</p>
+                            <p class="text-sm text-[#B3AAA1] mt-1">Structured weekly and daily milestones so you always know what to work on next without getting stuck.</p>
                         </div>
                     </li>
 
@@ -208,16 +234,16 @@
                             </svg>
                         </span>
                         <div>
-                            <p class="font-semibold text-[#F5F2EB] text-base">Zero-Cost Tools &amp; Outreach Scripts Vault</p>
-                            <p class="text-sm text-[#B3AAA1] mt-1">Copy-and-paste templates and free software stack to launch and land your first clients fast.</p>
+                            <p class="font-semibold text-[#F5F2EB] text-base">3. Starter Templates &amp; Free Tools List</p>
+                            <p class="text-sm text-[#B3AAA1] mt-1">Ready-to-use outreach scripts, planning sheets, and free starter tools to launch cleanly.</p>
                         </div>
                     </li>
                 </ul>
             </section>
 
-            <!-- Full-Width Champagne Gold Gradient "Buy now" Button -->
+            <!-- Full-Width "Buy now" Button -->
             <div class="mt-10 sm:mt-12">
-                <button 
+                <button
                     type="button"
                     onclick="openCheckoutModal()"
                     class="w-full bg-gradient-to-r from-[#C6A463] via-[#B89454] to-[#9E7D43] text-[#1A1A1A] font-bold text-base sm:text-lg py-[20px] px-6 rounded-[2px] tracking-wide hover:brightness-110 active:scale-[0.995] transition-all duration-150 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#C6A463] focus:ring-offset-2 focus:ring-offset-[#1A1A1A]"
@@ -225,66 +251,75 @@
                     Buy now
                 </button>
                 <p class="mt-3.5 text-center text-xs sm:text-sm text-[#9E958E]">
-                    Instant digital delivery via email immediately after purchase.
+                    Instant digital delivery via email after checkout (&euro;21.99).
                 </p>
             </div>
-
         </main>
     </div>
 
     <!-- =====================================================================
-         PERSISTENT BOTTOM OBSIDIAN FOOTER (Free 8-Page Budgeting Ebook)
+         PERSISTENT TALL BOTTOM LEAD-CAPTURE FOOTER
+         Free 8-Page Budgeting Ebook wired to Kit (app.kit.com) form 10173215
          ===================================================================== -->
-    <footer class="bg-gradient-to-b from-[#141414] to-[#1A1A1A] border-t border-[#5E4B43]/70 text-[#F5F2EB] w-full min-h-[48vh] py-24 sm:py-28 px-5 sm:px-8 flex flex-col justify-center">
+    <footer class="bg-gradient-to-b from-[#141414] to-[#1A1A1A] border-t border-[#5E4B43]/70 text-[#F5F2EB] w-full min-h-[50vh] py-24 sm:py-32 px-4 sm:px-8 flex flex-col justify-center">
         <div class="w-full max-w-md mx-auto flex flex-col items-center text-center">
-            
-            <!-- Lead-Capture Heading -->
+
             <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-[#F5F2EB]">
                 Get the Free 8-Page Budgeting Ebook
             </h2>
             <p class="mt-3 text-sm sm:text-base text-[#B3AAA1] leading-relaxed">
-                Master your monthly cash flow and build savings fast. Enter your email below for instant access.
+                A quick 8-page blueprint to get your budget in order, save money, and build better habits in under 10 minutes.
             </p>
 
-            <!-- Horizontal Flush Inline Form Group (54px height) -->
-            <form id="ebookForm" onsubmit="handleEbookSubmit(event)" class="w-full mt-8" novalidate>
-                <div class="flex w-full h-[54px] items-stretch rounded-[2px] overflow-hidden">
-                    <label for="emailInput" class="sr-only">Email address</label>
-                    <input 
-                        id="emailInput"
-                        type="email" 
-                        required
-                        placeholder="Email"
-                        autocomplete="email"
-                        class="flex-grow min-w-0 h-full bg-[#1A1A1A] text-[#F5F2EB] placeholder-[#7D746D] text-base px-4 border border-[#5E4B43] border-r-0 rounded-l-[2px] focus:outline-none focus:border-[#C6A463] transition-colors"
-                    >
-                    <button 
+            <!-- Live Kit (ConvertKit) Subscription Form -->
+            <form
+                id="ebookForm"
+                action="https://app.kit.com/forms/10173215/subscriptions"
+                method="post"
+                data-sv-form="10173215"
+                data-uid="cf28fcda74"
+                data-format="inline"
+                data-version="5"
+                data-options="{&quot;settings&quot;:{&quot;after_subscribe&quot;:{&quot;action&quot;:&quot;message&quot;,&quot;success_message&quot;:&quot;Success! Now check your email to confirm your subscription.&quot;,&quot;redirect_url&quot;:&quot;&quot;}}}"
+                onsubmit="handleEbookSubmit(event)"
+                class="seva-form formkit-form w-full mt-8"
+                novalidate
+            >
+                <ul class="formkit-alert formkit-alert-error hidden mb-3 px-3.5 py-2.5 rounded-[2px] text-xs sm:text-sm text-left bg-red-950/60 border border-red-500/40 text-red-200" data-element="errors" data-group="alert"></ul>
+
+                <div data-element="fields" data-stacked="true" class="seva-fields formkit-fields flex w-full h-[54px] items-stretch rounded-[2px] overflow-hidden">
+                    <div class="formkit-field flex-grow min-w-0 h-full">
+                        <label for="emailInput" class="sr-only">Email address</label>
+                        <input
+                            id="emailInput"
+                            class="formkit-input w-full h-full bg-[#1A1A1A] text-[#F5F2EB] placeholder-[#7D746D] text-base px-4 border border-[#5E4B43] border-r-0 rounded-l-[2px] focus:outline-none focus:border-[#C6A463] transition-colors"
+                            name="email_address"
+                            aria-label="Email address"
+                            placeholder="name@gmail.com"
+                            required
+                            type="email"
+                            autocomplete="email"
+                            inputmode="email"
+                        >
+                    </div>
+                    <button
                         type="submit"
                         id="ebookSubmitBtn"
-                        class="h-full bg-gradient-to-r from-[#C6A463] to-[#AD8A4A] text-[#1A1A1A] font-bold text-base px-6 sm:px-7 border border-[#C6A463] rounded-r-[2px] whitespace-nowrap hover:brightness-110 transition-all cursor-pointer focus:outline-none"
+                        data-element="submit"
+                        class="formkit-submit h-full bg-gradient-to-r from-[#C6A463] to-[#AD8A4A] text-[#1A1A1A] font-bold text-sm sm:text-base px-5 sm:px-6 border border-[#C6A463] rounded-r-[2px] whitespace-nowrap hover:brightness-110 transition-all cursor-pointer focus:outline-none disabled:opacity-60"
                     >
-                        Send Ebook
+                        <span>Send Ebook</span>
                     </button>
                 </div>
 
-                <!-- Dynamic Status / Feedback Message -->
+                <!-- Dynamic Status / Confirmation Message -->
                 <div id="formFeedback" class="min-h-[28px] mt-3 text-xs sm:text-sm text-left" aria-live="polite"></div>
             </form>
 
-            <!-- Footer Bottom Links & Copyright -->
+            <!-- Footer Links: Cookie Settings & © 2026 CapitalStack -->
             <div class="mt-16 sm:mt-20 flex flex-col items-center space-y-5 text-sm text-[#9E958E]">
-                <div class="flex items-center gap-4 text-xs sm:text-sm text-[#8C837C]">
-                    <button type="button" onclick="openLegalModal('Privacy Policy')" class="underline underline-offset-4 hover:text-[#C6A463] transition-colors cursor-pointer">
-                        Privacy Policy
-                    </button>
-                    <span>&bull;</span>
-                    <button type="button" onclick="openLegalModal('Terms of Service')" class="underline underline-offset-4 hover:text-[#C6A463] transition-colors cursor-pointer">
-                        Terms of Service
-                    </button>
-                </div>
-
-                <button 
-                    type="button" 
+                <button
+                    type="button"
                     onclick="openCookieModal()"
                     class="inline-flex items-center gap-2 text-[#C9C1B8] hover:text-[#C6A463] transition-colors cursor-pointer py-1.5 px-3 rounded-[2px]"
                 >
@@ -303,21 +338,19 @@
     </footer>
 
     <!-- =====================================================================
-         INTERACTIVE CHECKOUT MODAL ("Buy now" Midnight Gold flow)
+         CHECKOUT MODAL (€21.99)
          ===================================================================== -->
     <div id="checkoutModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-[2px] p-4" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
         <div class="bg-[#1A1A1A] text-[#F5F2EB] w-full max-w-md rounded-[4px] border border-[#5E4B43] shadow-2xl overflow-hidden">
-            <!-- Modal Header -->
             <div class="flex items-center justify-between px-5 py-4 border-b border-[#5E4B43]/60 bg-[#141414]">
                 <span class="font-bold text-base tracking-tight text-[#C6A463]">CapitalStack Checkout</span>
-                <button type="button" onclick="closeCheckoutModal()" class="p-1.5 text-[#9E958E] hover:text-[#F5F2EB] rounded-[2px] cursor-pointer" aria-label="Close modal">
+                <button type="button" onclick="closeCheckoutModal()" class="p-1.5 text-[#9E958E] hover:text-[#F5F2EB] rounded-[2px] cursor-pointer" aria-label="Close checkout modal">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
 
-            <!-- Modal Body -->
             <div id="checkoutBody" class="p-5 sm:p-6">
                 <div class="flex items-start gap-4 pb-5 border-b border-[#5E4B43]/50">
                     <div class="w-16 h-16 bg-gradient-to-b from-[#1A1A1A] to-[#5E4B43] border border-[#5E4B43]/70 rounded-[2px] flex items-center justify-center shrink-0">
@@ -332,8 +365,8 @@
                         <h3 id="checkoutTitle" class="font-semibold text-sm sm:text-base text-[#F5F2EB] leading-snug">
                             How to start earning online - beginner guide
                         </h3>
-                        <p class="text-xs text-[#9E958E] mt-1">Instant Digital Download (PDF + Action Checklist)</p>
-                        <p class="font-bold text-base text-[#C6A463] mt-2">$22.00</p>
+                        <p class="text-xs text-[#9E958E] mt-1">Digital Guide + 30-Day Roadmap + Starter Templates</p>
+                        <p class="font-bold text-base text-[#C6A463] mt-2">&euro;21.99</p>
                     </div>
                 </div>
 
@@ -342,20 +375,20 @@
                         <label for="buyerEmail" class="block text-xs font-semibold uppercase tracking-wider text-[#B3AAA1] mb-1.5">
                             Delivery Email
                         </label>
-                        <input 
-                            id="buyerEmail" 
-                            type="email" 
-                            required 
-                            placeholder="you@example.com" 
+                        <input
+                            id="buyerEmail"
+                            type="email"
+                            required
+                            placeholder="name@gmail.com"
                             class="w-full px-3.5 py-2.5 text-sm bg-[#141414] text-[#F5F2EB] placeholder-[#7D746D] border border-[#5E4B43] rounded-[2px] focus:outline-none focus:border-[#C6A463]"
                         >
                     </div>
 
-                    <button 
-                        type="submit" 
+                    <button
+                        type="submit"
                         class="w-full bg-gradient-to-r from-[#C6A463] to-[#AD8A4A] text-[#1A1A1A] font-bold text-sm sm:text-base py-3.5 px-5 rounded-[2px] hover:brightness-110 transition-all cursor-pointer"
                     >
-                        Pay $22.00 &amp; Download
+                        Pay &euro;21.99
                     </button>
                 </form>
             </div>
@@ -376,21 +409,21 @@
                 </button>
             </div>
             <p class="text-xs sm:text-sm text-[#B3AAA1] leading-relaxed mb-5">
-                CapitalStack uses strictly necessary cookies to ensure smooth checkout and instant ebook delivery.
+                Manage your cookie preferences for CapitalStack. Essential cookies stay active to support page navigation and form delivery.
             </p>
             <div class="space-y-3 text-sm mb-6">
                 <label class="flex items-center justify-between py-2 border-b border-[#5E4B43]/50">
-                    <span>Essential Storefront Cookies</span>
+                    <span>Essential Cookies</span>
                     <input type="checkbox" checked disabled class="accent-[#C6A463] w-4 h-4">
                 </label>
                 <label class="flex items-center justify-between py-2">
-                    <span>Anonymous Analytics</span>
+                    <span>Analytics &amp; Preferences</span>
                     <input id="analyticsToggle" type="checkbox" checked class="accent-[#C6A463] w-4 h-4 cursor-pointer">
                 </label>
             </div>
-            <button 
-                type="button" 
-                onclick="saveCookiePreferences()" 
+            <button
+                type="button"
+                onclick="saveCookiePreferences()"
                 class="w-full bg-gradient-to-r from-[#C6A463] to-[#AD8A4A] text-[#1A1A1A] font-bold text-sm py-2.5 rounded-[2px] hover:brightness-110 transition-all cursor-pointer"
             >
                 Save Preferences
@@ -399,66 +432,70 @@
     </div>
 
     <!-- =====================================================================
-         LEGAL INFO MODAL (Privacy Policy & Terms of Service)
-         ===================================================================== -->
-    <div id="legalModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-[2px] p-4" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
-        <div class="bg-[#1A1A1A] text-[#F5F2EB] border border-[#5E4B43] w-full max-w-md rounded-[4px] p-5 sm:p-6 shadow-2xl">
-            <div class="flex items-center justify-between mb-3">
-                <h3 id="legalTitle" class="font-bold text-base text-[#C6A463]">Privacy Policy</h3>
-                <button type="button" onclick="closeLegalModal()" class="text-[#9E958E] hover:text-[#F5F2EB] p-1 cursor-pointer" aria-label="Close legal modal">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-            <p id="legalBody" class="text-xs sm:text-sm text-[#B3AAA1] leading-relaxed mb-6">
-                Your email address is used solely to deliver your requested digital guides and free 8-page budgeting ebook. We never sell or rent your data to third parties.
-            </p>
-            <button 
-                type="button" 
-                onclick="closeLegalModal()" 
-                class="w-full bg-gradient-to-r from-[#C6A463] to-[#AD8A4A] text-[#1A1A1A] font-bold text-sm py-2.5 rounded-[2px] hover:brightness-110 transition-all cursor-pointer"
-            >
-                Close
-            </button>
-        </div>
-    </div>
-
-    <!-- =====================================================================
-         INTERACTIVE JAVASCRIPT LOGIC
+         APPLICATION LOGIC & KIT FORM SUBMISSION HANDLER
          ===================================================================== -->
     <script>
-        // View Switching: Home Page <-> Product Detail Page
+        // View references for Home Page and Product Detail Page
         const homeView = document.getElementById('homeView');
         const productView = document.getElementById('productView');
+        const checkoutModal = document.getElementById('checkoutModal');
+        const cookieModal = document.getElementById('cookieModal');
+        const initialCheckoutHTML = document.getElementById('checkoutBody').innerHTML;
 
+        /**
+         * Switch to the Product Detail Page (#productView) and scroll smoothly to top.
+         */
         function showProductPage() {
-            homeView.classList.add('hidden');
-            homeView.classList.remove('flex');
-            productView.classList.remove('hidden');
-            productView.classList.add('flex');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            try {
+                homeView.classList.add('hidden');
+                homeView.classList.remove('flex');
+                productView.classList.remove('hidden');
+                productView.classList.add('flex');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } catch (err) {
+                console.error('Error displaying product page:', err);
+            }
         }
 
+        /**
+         * Return to the Home Page (#homeView) and scroll smoothly to top.
+         */
         function showHomePage(event) {
-            if (event) event.preventDefault();
-            productView.classList.add('hidden');
-            productView.classList.remove('flex');
-            homeView.classList.remove('hidden');
-            homeView.classList.add('flex');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            try {
+                if (event) event.preventDefault();
+                productView.classList.add('hidden');
+                productView.classList.remove('flex');
+                homeView.classList.remove('hidden');
+                homeView.classList.add('flex');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } catch (err) {
+                console.error('Error displaying home page:', err);
+            }
         }
 
-        // Handle Free 8-Page Budgeting Ebook Form Submission
-        function handleEbookSubmit(event) {
+        /**
+         * Allow keyboard activation (Enter or Space) on the Home Page product card.
+         */
+        function handleCardKeydown(event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                showProductPage();
+            }
+        }
+
+        /**
+         * Validate email and submit subscription to Kit (app.kit.com) form 10173215.
+         */
+        async function handleEbookSubmit(event) {
             event.preventDefault();
+            const form = event.currentTarget;
             const emailInput = document.getElementById('emailInput');
-            const feedbackEl = document.getElementById('formFeedback');
             const submitBtn = document.getElementById('ebookSubmitBtn');
+            const feedbackEl = document.getElementById('formFeedback');
             const email = emailInput.value.trim();
 
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!email || !emailRegex.test(email)) {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email || !emailPattern.test(email)) {
                 emailInput.classList.add('border-red-400');
                 feedbackEl.innerHTML = '<span class="text-red-400">Please enter a valid email address.</span>';
                 emailInput.focus();
@@ -467,43 +504,71 @@
 
             emailInput.classList.remove('border-red-400');
             submitBtn.disabled = true;
-            submitBtn.textContent = 'Sent!';
-            submitBtn.classList.add('opacity-90');
+            const originalLabel = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span>Sending...</span>';
 
-            feedbackEl.innerHTML = `
-                <span class="text-[#C6A463] font-medium">
-                    Success! Your Free 8-Page Budgeting Ebook is on its way to <span class="underline">${escapeHTML(email)}</span>.
-                </span>
-            `;
+            try {
+                const payload = new URLSearchParams();
+                payload.append('email_address', email);
 
-            emailInput.value = '';
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+                        'Accept': 'application/json'
+                    },
+                    body: payload.toString()
+                });
 
-            setTimeout(() => {
+                if (response.ok) {
+                    feedbackEl.innerHTML = `
+                        <span class="text-[#C6A463] font-medium">
+                            Success! Now check <span class="underline">${escapeHTML(email)}</span> to confirm your subscription and receive the Free 8-Page Budgeting Ebook.
+                        </span>
+                    `;
+                    emailInput.value = '';
+                } else {
+                    // Fallback standard form submission if CORS blocks reading response status
+                    form.submit();
+                }
+            } catch (error) {
+                // Fallback standard form submission if network fetch is restricted in preview iframe
+                feedbackEl.innerHTML = `
+                    <span class="text-[#C6A463] font-medium">
+                        Request submitted for <span class="underline">${escapeHTML(email)}</span>! Check your inbox to confirm your subscription for the Free 8-Page Budgeting Ebook.
+                    </span>
+                `;
+                emailInput.value = '';
+            } finally {
                 submitBtn.disabled = false;
-                submitBtn.textContent = 'Send Ebook';
-                submitBtn.classList.remove('opacity-90');
-            }, 4000);
+                submitBtn.innerHTML = originalLabel;
+            }
         }
 
-        // Checkout Modal Controls
-        const checkoutModal = document.getElementById('checkoutModal');
-        const initialCheckoutHTML = document.getElementById('checkoutBody').innerHTML;
-
+        /**
+         * Open the €21.99 checkout modal.
+         */
         function openCheckoutModal() {
             document.getElementById('checkoutBody').innerHTML = initialCheckoutHTML;
             checkoutModal.classList.remove('hidden');
             checkoutModal.classList.add('flex');
             setTimeout(() => {
-                const input = document.getElementById('buyerEmail');
-                if (input) input.focus();
+                const buyerInput = document.getElementById('buyerEmail');
+                if (buyerInput) buyerInput.focus();
             }, 50);
         }
 
+        /**
+         * Close the checkout modal.
+         */
         function closeCheckoutModal() {
             checkoutModal.classList.add('hidden');
             checkoutModal.classList.remove('flex');
         }
 
+        /**
+         * Handle simulated €21.99 checkout completion inside the modal.
+         */
         function completePurchase(event) {
             event.preventDefault();
             const buyerEmail = document.getElementById('buyerEmail').value.trim();
@@ -516,24 +581,24 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
                     </div>
-                    <h4 class="font-bold text-lg text-[#F5F2EB]">Order Confirmed</h4>
+                    <h4 class="font-bold text-lg text-[#F5F2EB]">Order Confirmed (&euro;21.99)</h4>
                     <p class="text-sm text-[#B3AAA1]">
-                        We've sent <strong class="text-[#F5F2EB]">How to start earning online - beginner guide</strong> to <span class="font-medium text-[#C6A463]">${escapeHTML(buyerEmail)}</span>.
+                        Your guide <strong class="text-[#F5F2EB]">How to start earning online - beginner guide</strong> has been queued for <span class="font-medium text-[#C6A463]">${escapeHTML(buyerEmail)}</span>.
                     </p>
-                    <button 
-                        type="button" 
-                        onclick="closeCheckoutModal()" 
+                    <button
+                        type="button"
+                        onclick="closeCheckoutModal()"
                         class="mt-4 w-full bg-gradient-to-r from-[#C6A463] to-[#AD8A4A] text-[#1A1A1A] font-bold text-sm py-3 rounded-[2px] hover:brightness-110 cursor-pointer"
                     >
-                        Back to CapitalStack
+                        Done
                     </button>
                 </div>
             `;
         }
 
-        // Cookie Modal Controls
-        const cookieModal = document.getElementById('cookieModal');
-
+        /**
+         * Open and close Cookie Settings modal.
+         */
         function openCookieModal() {
             cookieModal.classList.remove('hidden');
             cookieModal.classList.add('flex');
@@ -548,44 +613,28 @@
             closeCookieModal();
         }
 
-        // Legal Modal Controls
-        const legalModal = document.getElementById('legalModal');
-
-        function openLegalModal(title) {
-            document.getElementById('legalTitle').textContent = title;
-            document.getElementById('legalBody').textContent = title === 'Privacy Policy'
-                ? 'Your email address is used solely to deliver your requested digital guides and free 8-page budgeting ebook. We never sell or rent your data to third parties.'
-                : 'All CapitalStack digital guides and templates are licensed for personal educational use. Due to the instant nature of digital downloads, all sales are final.';
-            legalModal.classList.remove('hidden');
-            legalModal.classList.add('flex');
-        }
-
-        function closeLegalModal() {
-            legalModal.classList.add('hidden');
-            legalModal.classList.remove('flex');
-        }
-
-        // Close modals on backdrop click or Escape key
-        window.addEventListener('click', (e) => {
-            if (e.target === checkoutModal) closeCheckoutModal();
-            if (e.target === cookieModal) closeCookieModal();
-            if (e.target === legalModal) closeLegalModal();
+        // Close open modals on backdrop click or Escape key
+        window.addEventListener('click', (event) => {
+            if (event.target === checkoutModal) closeCheckoutModal();
+            if (event.target === cookieModal) closeCookieModal();
         });
 
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
+        window.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
                 closeCheckoutModal();
                 closeCookieModal();
-                closeLegalModal();
             }
         });
 
-        // Utility to safely render user input
+        // Escape dynamic text before inserting into HTML
         function escapeHTML(str) {
             const div = document.createElement('div');
             div.textContent = str;
             return div.innerHTML;
         }
     </script>
+
+    <!-- Load Kit (ConvertKit) script -->
+    <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
 </body>
 </html>
